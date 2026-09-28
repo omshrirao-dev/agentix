@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Poppins', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Montserrat', 'Poppins', sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #0c0217;
+  color: #f1f5f9;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: var(--font-display);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(26, 9, 44, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 70, 239, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-panel-subtle {
+  background: rgba(22, 6, 38, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(38, 12, 64, 0.7);
+  border-color: rgba(232, 121, 249, 0.4);
+  box-shadow: 0 12px 40px -10px rgba(192, 38, 211, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Gradient text accents */
+.text-gradient-purple {
+  background: linear-gradient(135deg, #ffffff 0%, #f5d0fe 40%, #e879f9 70%, #c026d3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-vibrant {
+  background: linear-gradient(135deg, #f472b6 0%, #d946ef 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glow effects */
+.glow-magenta {
+  box-shadow: 0 0 25px -5px rgba(217, 70, 239, 0.45);
+}
+
+.glow-purple {
+  box-shadow: 0 0 35px -8px rgba(147, 51, 234, 0.4);
+}
+
+/* Subtle background glowing mesh */
+.bg-cosmic-gradient {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(168, 85, 247, 0.28), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 40%, rgba(217, 70, 239, 0.2), transparent),
+    radial-gradient(ellipse 50% 50% at 10% 70%, rgba(126, 34, 206, 0.25), transparent),
+    linear-gradient(180deg, #0d011a 0%, #160329 25%, #240742 50%, #140225 75%, #0a0113 100%);
+}

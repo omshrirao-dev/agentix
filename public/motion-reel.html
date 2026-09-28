@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Motion &amp; Kinetic Graphic Reel | Portfolio Video</title>
+  <meta name="description" content="Brand Motion & Kinetic Graphic Reel by Om Shrirao - High-retention vertical video production.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --bg-gradient: linear-gradient(150deg, #f8fafc 0%, #edf2f7 50%, #f1f5f9 100%);
+      --card-bg: #ffffff;
+      --border-color: rgba(203, 213, 225, 0.7);
+      --border-radius: 15px;
+      --box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.05);
+      --box-shadow-hover: 0 32px 64px -16px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(168, 85, 247, 0.25);
+      --primary-accent: #9333ea;
+      --primary-gradient: linear-gradient(135deg, #c026d3 0%, #9333ea 50%, #4f46e5 100%);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    body {
+      font-family: var(--font-family);
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container Section */
+    .showcase-section {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Section Header Badges & Typography */
+    .showcase-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      background: rgba(147, 51, 234, 0.08);
+      border: 1px solid rgba(147, 51, 234, 0.2);
+      color: #7e22ce;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .showcase-badge svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .showcase-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .showcase-title span {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .showcase-subtitle {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 2.5rem auto;
+      font-weight: 400;
+    }
+
+    /* Video Player Card Container */
+    .video-card-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 380px; /* Optimized 9:16 vertical aspect ratio container */
+      margin: 0 auto;
+    }
+
+    .video-card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #000000;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--box-shadow-hover);
+    }
+
+    /* Responsive YouTube Iframe */
+    .video-card iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: var(--border-radius);
+      display: block;
+    }
+
+    /* Poster / Thumbnail Fallback Container */
+    .thumbnail-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      z-index: 10;
+      background-color: #0f172a;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+
+    .thumbnail-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .thumbnail-container:hover .thumbnail-img {
+      transform: scale(1.05);
+    }
+
+    /* Gradient Scrim & Metadata Overlay */
+    .thumbnail-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.85) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.25rem;
+      pointer-events: none;
+    }
+
+    .top-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .short-pill {
+      background: rgba(225, 29, 72, 0.92);
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(225, 29, 72, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .niche-pill {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #f5d0fe;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* Center Play Trigger */
+    .play-btn-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      pointer-events: none;
+    }
+
+    .play-button {
+      width: 66px;
+      height: 66px;
+      background: #c026d3;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 10px 28px rgba(192, 38, 211, 0.5), 0 0 0 8px rgba(192, 38, 211, 0.22);
+      transition: transform 0.25s ease, background-color 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .thumbnail-container:hover .play-button {
+      transform: scale(1.12);
+      background: #d946ef;
+      box-shadow: 0 14px 34px rgba(192, 38, 211, 0.65), 0 0 0 12px rgba(192, 38, 211, 0.28);
+    }
+
+    .play-button svg {
+      width: 26px;
+      height: 26px;
+      fill: currentColor;
+      margin-left: 3px;
+    }
+
+    .play-label {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      letter-spacing: 0.03em;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Bottom Info Card */
+    .bottom-info {
+      text-align: left;
+    }
+
+    .video-headline {
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 0.35rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .video-caption {
+      color: rgba(226, 232, 240, 0.85);
+      font-size: 0.75rem;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .video-audio {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #f0abfc;
+      font-size: 0.72rem;
+      font-weight: 500;
+    }
+
+    .video-audio svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+    }
+
+    /* Footer Details Below Player */
+    .card-footer-details {
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .card-footer-details a {
+      color: #7e22ce;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .card-footer-details a:hover {
+      color: #581c87;
+      text-decoration: underline;
+    }
+
+    /* Hidden Utility */
+    .is-hidden {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 480px) {
+      body {
+        padding: 1.5rem 0.75rem;
+      }
+      .video-card-wrapper {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="showcase-section">
+    <!-- Section Badge -->
+    <div class="showcase-badge">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+      Brand Motion &amp; Kinetic VFX
+    </div>
+
+    <!-- Section Title & Subtitle -->
+    <h1 class="showcase-title">
+      Brand Motion &amp; <span>Kinetic Graphic Reel</span>
+    </h1>
+    <p class="showcase-subtitle">
+      Dynamic typography animations, VFX cuts, and localized business call-to-actions engineered for high retention and customer conversion.
+    </p>
+
+    <!-- Centered Video Player Card (15px Rounded Corners, Subtle Box Shadow, Border) -->
+    <div class="video-card-wrapper">
+      <div class="video-card" id="videoCard">
+        
+        <!-- Custom Thumbnail / Poster Fallback with High-Res Image -->
+        <div class="thumbnail-container" id="thumbnailContainer" onclick="playYouTubeVideo()" role="button" aria-label="Play Portfolio Reel">
+          <img 
+            src="https://img.youtube.com/vi/5ttYv6LGBt8/maxresdefault.jpg" 
+            alt="Brand Motion & Kinetic Graphic Reel Thumbnail" 
+            class="thumbnail-img"
+            id="posterImg"
+            onerror="this.src='https://img.youtube.com/vi/5ttYv6LGBt8/hqdefault.jpg'"
+          />
+          
+          <!-- Visual Overlay Scrim & Badges -->
+          <div class="thumbnail-overlay">
+            <div class="top-meta">
+              <span class="short-pill">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Shorts
+              </span>
+              <span class="niche-pill">Brand Scaling</span>
+            </div>
+
+            <!-- Center Interactive Play Trigger -->
+            <div class="play-btn-wrapper">
+              <div class="play-button" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+              <span class="play-label">Click to Play</span>
+            </div>
+
+            <!-- Bottom Video Metadata -->
+            <div class="bottom-info">
+              <div class="video-headline">Brand Motion &amp; Kinetic Graphic Reel</div>
+              <div class="video-caption">Dynamic typography animations, VFX cuts, and localized business call-to-actions.</div>
+              <div class="video-audio">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+                <span>Original Sound - Om Shrirao</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic YouTube Iframe Mounting Point -->
+        <div id="iframeTarget" style="width: 100%; height: 100%;"></div>
+
+      </div>
+
+      <!-- Action Strip Below Video Card -->
+      <div class="card-footer-details">
+        <span>Aspect Ratio: <strong>9:16 Vertical</strong></span>
+        <span>•</span>
+        <a href="https://youtube.com/shorts/5ttYv6LGBt8" target="_blank" rel="noopener noreferrer">
+          <span>Open on YouTube</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clean JavaScript for Instant Autoplay Loading -->
+  <script>
+    const YOUTUBE_VIDEO_ID = '5ttYv6LGBt8';
+
+    function playYouTubeVideo() {
+      const container = document.getElementById('thumbnailContainer');
+      const iframeTarget = document.getElementById('iframeTarget');
+
+      // Prevent duplicate iframe injection
+      if (document.getElementById('ytPlayerIframe')) return;
+
+      // Create responsive high-performance YouTube iframe
+      const iframe = document.createElement('iframe');
+      iframe.id = 'ytPlayerIframe';
+      iframe.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+      iframe.title = 'Brand Motion & Kinetic Graphic Reel';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+
+      // Mount iframe & smoothly fade out the thumbnail fallback
+      iframeTarget.appendChild(iframe);
+      container.classList.add('is-hidden');
+    }
+  </script>
+</body>
+</html>
